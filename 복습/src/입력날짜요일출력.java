@@ -1,6 +1,6 @@
 import java.util.Scanner;
 public class 입력날짜요일출력 {
-
+ 
 	public static void main(String[] args) {
 
 		Scanner scan = new Scanner(System.in);

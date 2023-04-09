@@ -1,7 +1,7 @@
 import java.util.Arrays;
 
 public class 로또번호생성 {
-
+ 
 	public static void main(String[] args) {
         // 6칸 배열 확정
 		int[] arr = new int[6];

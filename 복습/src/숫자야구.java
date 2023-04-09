@@ -1,7 +1,7 @@
 import java.util.Arrays;
 import java.util.Scanner;
 public class 숫자야구 {
-
+ 
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 		// 컴퓨터 세개의 난수 생성 (중복 x)
