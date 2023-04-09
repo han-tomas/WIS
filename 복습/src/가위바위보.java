@@ -1,6 +1,6 @@
 import java.util.Scanner;
 public class 가위바위보 {
- 
+
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 		
