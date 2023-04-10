@@ -1,4 +1,4 @@
-package 복습;
+
 import java.util.Scanner;
 public class 메소드_2진수 {
 
