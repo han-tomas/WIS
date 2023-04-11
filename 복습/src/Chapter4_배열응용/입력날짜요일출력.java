@@ -1,3 +1,4 @@
+package Chapter4_배열응용;
 import java.util.Scanner;
 public class 입력날짜요일출력 {
  

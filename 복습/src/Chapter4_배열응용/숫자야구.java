@@ -1,3 +1,4 @@
+package Chapter4_배열응용;
 import java.util.Arrays;
 import java.util.Scanner;
 public class 숫자야구 {

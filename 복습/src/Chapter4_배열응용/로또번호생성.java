@@ -1,3 +1,4 @@
+package Chapter4_배열응용;
 import java.util.Arrays;
 
 public class 로또번호생성 {
