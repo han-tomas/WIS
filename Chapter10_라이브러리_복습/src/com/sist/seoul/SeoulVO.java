@@ -1,5 +1,5 @@
 package com.sist.seoul;
-
+// 서울명소 데이터 저장
 public class SeoulVO {
 	private int no;
 	private String name;

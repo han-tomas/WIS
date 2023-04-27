@@ -32,7 +32,7 @@ public class SeoulSystem {
 				vo.setName(st.nextToken());
 				vo.setContent(st.nextToken());
 				vo.setAddress(st.nextToken());
-				list.add(vo);
+				list.add(vo); // SeoulVO 사용자 정의 데이터형으로하는 vo변수에 Seoul() 객체를 생성한후, 모든 데이터를 list에 추가한다.
 
 			}
 			
@@ -55,14 +55,14 @@ public class SeoulSystem {
 			end = (totalpage*10) - (10-list.size() % 10); 
 		}
 		
-		ArrayList movieList = new ArrayList(list.subList(start, end));
+		ArrayList movieList = new ArrayList(list.subList(start, end)); //start~end-1까지 => 1page index번호 0~9
 		
 		return movieList;
 	}
 	
 	// 2. 상세보기
 	public SeoulVO seoulDetailData(int no) {
-		return (SeoulVO)list.get(no-1);
+		return (SeoulVO)list.get(no-1); //get()메소드는 Object를 리턴하기때문에 SeoulVO 클래스 자료형으로 형변환 필요
 	}
 
 	// 메뉴
