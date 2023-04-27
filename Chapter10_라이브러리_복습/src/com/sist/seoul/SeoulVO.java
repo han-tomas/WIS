@@ -1,5 +1,5 @@
 package com.sist.seoul;
-
+  
 public class SeoulVO {
 	private int no;
 	private String name;
