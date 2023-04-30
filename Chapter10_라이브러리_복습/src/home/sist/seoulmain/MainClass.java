@@ -1,4 +1,4 @@
-package home.sist.movie;
+package home.sist.seoulmain;
 
 public class MainClass {
 	

@@ -1,4 +1,4 @@
-package home.sist.movie;
+package home.sist.seoulmain;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
