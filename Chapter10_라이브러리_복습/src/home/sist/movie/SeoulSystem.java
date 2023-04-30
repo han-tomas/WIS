@@ -8,6 +8,7 @@ import java.util.StringTokenizer;
 // 기능 구현
 public class SeoulSystem {
 	private static List list = new ArrayList();
+	
 	/*
 	 *  사용자들이 보는 정보가 같아야 하므로 static 
 	 */
