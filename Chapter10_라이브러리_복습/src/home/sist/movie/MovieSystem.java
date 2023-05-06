@@ -73,6 +73,7 @@ public class MovieSystem {
 		System.out.println("4. 장르별 영화 검색");
 		System.out.println("5. 배우 영화 검색");
 		System.out.println("6. 감독 영화 검색");
+		System.out.println("9. 프로그램 종료");
 		System.out.println("==================================================");
 		System.out.print("메뉴 선택 : ");
 		return scan.nextInt() ;
