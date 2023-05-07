@@ -82,7 +82,7 @@ public class FindPanel extends JPanel implements ActionListener{
 			List<MovieVO> list = ms.movieCategoryData(1);
 			for(MovieVO vo:list)
 			{
-				URL url = new URL("http"+vo.getPoster());
+				URL url = new URL("http:"+vo.getPoster());
 				Image img = ImageChange.getImage(new ImageIcon(url), 30, 30);
 				if (vo.getCno()==3) 
 				{
@@ -155,7 +155,7 @@ public class FindPanel extends JPanel implements ActionListener{
 			List<MovieVO> list = ms.movieCategoryData(cno);
 			for(MovieVO vo:list)
 			{
-				URL url = new URL("http"+vo.getPoster());
+				URL url = new URL("http:"+vo.getPoster());
 				Image img = ImageChange.getImage(new ImageIcon(url), 30, 30);
 				Object[] data = {
 									new ImageIcon(img),
@@ -179,7 +179,7 @@ public class FindPanel extends JPanel implements ActionListener{
 			List<MovieVO> list = ms.movieFindData(title);
 			for(MovieVO vo:list)
 			{
-				URL url = new URL("http"+vo.getPoster());
+				URL url = new URL("http:"+vo.getPoster());
 				Image img = ImageChange.getImage(new ImageIcon(url), 30, 30);
 				Object[] data = {
 									new ImageIcon(img),

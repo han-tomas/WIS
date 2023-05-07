@@ -70,7 +70,7 @@ public class DataCollectionManager {
 			{
 				Document doc = Jsoup.connect(urls[i]).get();
 				Elements title = doc.select("strong.tit_item a.link_txt");
-				Elements poster = doc.select("div.poster_movie img");
+				Elements poster = doc.select("div.item_poster div.poster_movie img");
 				Elements age = doc.select("span.ico_see");
 				Elements grade = doc.select("span.txt_append span.txt_grade");
 				Elements reservation = doc.select("span.txt_append span.txt_num");
