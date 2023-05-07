@@ -58,7 +58,7 @@ public class DataCollectionManager {
 			 *	    private String title;
 			 *		private String poster;
 			 * 		private String age;
-			 *      private String rated;
+			 *      private String grade;
 			 *		private String reservation;
 			 *		private String regDate;
 			 *		private String content;
@@ -72,22 +72,22 @@ public class DataCollectionManager {
 				Elements title = doc.select("strong.tit_item a.link_txt");
 				Elements poster = doc.select("div.poster_movie img");
 				Elements age = doc.select("span.ico_see");
-				Elements rated = doc.select("span.txt_append span.txt_grade");
+				Elements grade = doc.select("span.txt_append span.txt_grade");
 				Elements reservation = doc.select("span.txt_append span.txt_num");
 				Elements regDate = doc.select("span.txt_info span.txt_num");
 				Elements content = doc.select("a.link_strory");
 				// index=16,뮤지컬 공연실황, 알쏭달쏭 캐치! 티니핑 <신비한 상자를 열어라!> 포스터가 없음.
-				if (i==0) {
-					poster.add(16, new Element("img")
-						    .attr("src", "https://t1.daumcdn.net/movie/movie2020/pc/ico_noimage.png"));
-					/*
-					 *    이 코드는 반복문에서 i가 0일 때 poster 리스트의 16번째 인덱스에 새로운 "img" 요소를 추가하고, 
-					 *    "src" 속성에 "https://t1.daumcdn.net/movie/movie2020/pc/ico_noimage.png" 값을 설정하는 것입니다.
-					 */
-				}
+//				if (i==0) {
+//					poster.add(16, new Element("img")
+//						    .attr("src", "https://t1.daumcdn.net/movie/movie2020/pc/ico_noimage.png"));
+//					/*
+//					 *    이 코드는 반복문에서 i가 0일 때 poster 리스트의 16번째 인덱스에 새로운 "img" 요소를 추가하고, 
+//					 *    "src" 속성에 "https://t1.daumcdn.net/movie/movie2020/pc/ico_noimage.png" 값을 설정하는 것입니다.
+//					 */
+//				}
 				if(i==1)
 				{
-					regDate.add(12, new Element("span.txt_info span.txt_num").appendText("개봉일 없음"));
+					regDate.add(12, new Element("span.txt_info span.txt_num").appendText("개봉일 정보 없음"));
 					age.add(12,new Element("span.ico_see").appendText("연령 제한 정보 없음"))	;
 					/*
 					 *    regDate와 age 라는 ArrayList의 12번 인덱스에 각각 span 요소를 추가하고, 
@@ -121,10 +121,10 @@ public class DataCollectionManager {
 						System.out.println("연령제한 : "+age.get(j).text());
 						vo.setAge(age.get(j).text());
 					}
-					if(!rated.isEmpty())
+					if(!grade.isEmpty())
 					{
-						System.out.println("평점 : "+rated.get(j).text());
-						vo.setRated(rated.get(j).text());
+						System.out.println("평점 : "+grade.get(j).text());
+						vo.setGrade(grade.get(j).text());
 					}
 					if(!reservation.isEmpty())
 					{

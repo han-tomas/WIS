@@ -7,7 +7,7 @@ public class MovieVO implements Serializable { // 데이터 직렬화
 	private String title;
 	private String poster;
 	private String age;
-	private String rated; 
+	private String grade; 
 	private String reservation;
 	private String regDate;
 	private String content;
@@ -39,11 +39,11 @@ public class MovieVO implements Serializable { // 데이터 직렬화
 	public void setAge(String age) {
 		this.age = age;
 	}
-	public String getRated() {
-		return rated;
+	public String getGrade() {
+		return grade;
 	}
-	public void setRated(String rated) {
-		this.rated = rated;
+	public void setGrade(String grade) {
+		this.grade = grade;
 	}
 	public String getReservation() {
 		return reservation;
