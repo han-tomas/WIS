@@ -59,17 +59,17 @@ public class FindPanel extends JPanel implements ActionListener{
 		
 		// 검색창 배치
 		setLayout(null);
-		tf.setBounds(10, 15, 600, 30);
-		b1.setBounds(615, 15, 100, 30);
+		tf.setBounds(10, 15, 750, 30);
+		b1.setBounds(765, 15, 100, 30);
 		
 		JPanel p = new JPanel();
 		p.setLayout(new GridLayout(1, 6, 5, 5));
 		p.add(b2);
 		p.add(b3);
 		p.add(b4);
-		p.setBounds(10, 55, 700, 35);
+		p.setBounds(10, 55, 850, 35);
 		
-		js.setBounds(10, 100, 700, 500);
+		js.setBounds(10, 100, 850, 700);
 		add(tf);
 		add(b1);
 		add(p);

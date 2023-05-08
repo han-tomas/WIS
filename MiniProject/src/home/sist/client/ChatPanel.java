@@ -46,11 +46,11 @@ public class ChatPanel extends JPanel {
 		
 		//배치
 		setLayout(null);
-		js1.setBounds(0, 0, 650, 600);
-		tf.setBounds(0, 600, 500, 30);
-		box.setBounds(500, 600, 150, 30);
-		js2.setBounds(660, 0, 230, 600);
-		p.setBounds(700,600,150,30);
+		js1.setBounds(0, 0, 650, 700);
+		tf.setBounds(0, 700, 500, 30);
+		box.setBounds(500, 700, 150, 30);
+		js2.setBounds(660, 0, 230, 700);
+		p.setBounds(700,700,150,30);
 		
 		
 		add(js1);

@@ -153,6 +153,7 @@ public class DataCollectionManager {
 
 					vo.setRank(k);
 					vo.setCno(i+1);
+					vo.setTitle(title.get(j).text());
 					vo.setPoster(poster.get(j).attr("src"));
 					vo.setKey(youtubeKeyData(title.get(j).text()));
 					vo.setPk(Integer.parseInt(pk.get(j).attr("href").substring(pk.get(j).attr("href").lastIndexOf("=")+1)));

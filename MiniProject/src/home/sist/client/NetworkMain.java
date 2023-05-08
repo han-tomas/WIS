@@ -46,7 +46,7 @@ public class NetworkMain extends JFrame implements ActionListener,Runnable{ //Ac
 		logo.setBounds(930, 15, 240, 200 );
 		mp.setBounds(10, 15, 900, 50);
 		cp.setBounds(10, 80, 900, 800);
-		sp.setBounds(930, 230, 240,500);
+		sp.setBounds(930, 230, 240,650);
 		
 		add(mp);
 		add(cp);
