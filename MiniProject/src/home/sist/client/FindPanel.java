@@ -52,20 +52,18 @@ public class FindPanel extends JPanel implements ActionListener{
 		};
 		table = new JTable(model);
 		// 출력 위치 길이 설정
-		table.setRowHeight(35);
+		table.setRowHeight(50);
 		// 타이틀바 고정
 		table.getTableHeader().setReorderingAllowed(false);
 		JScrollPane js = new JScrollPane(table);
 		
 		// 검색창 배치
 		setLayout(null);
-		tf.setBounds(10, 15, 300, 30);
-		b1.setBounds(315, 15, 100, 30);
+		tf.setBounds(10, 15, 600, 30);
+		b1.setBounds(615, 15, 100, 30);
 		
 		JPanel p = new JPanel();
 		p.setLayout(new GridLayout(1, 6, 5, 5));
-		p.add(tf);
-		p.add(b1);
 		p.add(b2);
 		p.add(b3);
 		p.add(b4);
@@ -82,7 +80,7 @@ public class FindPanel extends JPanel implements ActionListener{
 			List<MovieVO> list = ms.movieCategoryData(1);
 			for(MovieVO vo:list)
 			{
-				URL url = new URL("http:"+vo.getPoster());
+				URL url = new URL(vo.getPoster());
 				Image img = ImageChange.getImage(new ImageIcon(url), 30, 30);
 				if (vo.getCno()==3) 
 				{
@@ -90,7 +88,7 @@ public class FindPanel extends JPanel implements ActionListener{
 										vo.getRank(),			
 										new ImageIcon(img),
 										vo.getTitle(),
-										"",
+										""
 									};
 					model.addRow(data);
 				}
@@ -155,15 +153,29 @@ public class FindPanel extends JPanel implements ActionListener{
 			List<MovieVO> list = ms.movieCategoryData(cno);
 			for(MovieVO vo:list)
 			{
-				URL url = new URL("http:"+vo.getPoster());
+				
+				URL url = new URL(vo.getPoster());
 				Image img = ImageChange.getImage(new ImageIcon(url), 30, 30);
-				Object[] data = {
-									new ImageIcon(img),
-									vo.getRank(),
-									vo.getTitle(),
-									vo.getRegDate()
-								};
-				model.addRow(data);
+				if (vo.getCno()==3) 
+				{
+					Object[] data = { 
+										vo.getRank(),			
+										new ImageIcon(img),
+										vo.getTitle(),
+										""
+									};
+					model.addRow(data);
+				}
+				 else 
+				 {
+					 Object[] data = { 
+										vo.getRank(),			
+										new ImageIcon(img),
+										vo.getTitle(),
+										vo.getRegDate()
+									 };
+					 model.addRow(data);
+				 }
 			}
 		}catch(Exception ex) {}
 	}
@@ -179,15 +191,28 @@ public class FindPanel extends JPanel implements ActionListener{
 			List<MovieVO> list = ms.movieFindData(title);
 			for(MovieVO vo:list)
 			{
-				URL url = new URL("http:"+vo.getPoster());
+				URL url = new URL(vo.getPoster());
 				Image img = ImageChange.getImage(new ImageIcon(url), 30, 30);
-				Object[] data = {
-									new ImageIcon(img),
-									vo.getRank(),
-									vo.getTitle(),
-									vo.getRegDate()
-								};
-				model.addRow(data);
+				if (vo.getCno()==3) 
+				{
+					Object[] data = { 
+										vo.getRank(),			
+										new ImageIcon(img),
+										vo.getTitle(),
+										""
+									};
+					model.addRow(data);
+				}
+				 else 
+				 {
+					 Object[] data = { 
+										vo.getRank(),			
+										new ImageIcon(img),
+										vo.getTitle(),
+										vo.getRegDate()
+									 };
+					 model.addRow(data);
+				 }
 				
 			}
 		}catch(Exception ex) {}

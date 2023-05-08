@@ -58,8 +58,8 @@ public class ChatPanel extends JPanel {
 		add(box);
 		add(js2);
 		add(p);
-		String[] data = {"hong","홍길동","남자"};
-		model.addRow(data);
+		//String[] data = {"hong","홍길동","남자"};
+		//model.addRow(data);
 	}
 	public void initStyle()
 	{

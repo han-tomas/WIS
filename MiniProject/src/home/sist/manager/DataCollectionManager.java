@@ -76,6 +76,7 @@ public class DataCollectionManager {
 				Elements reservation = doc.select("span.txt_append span.txt_num");
 				Elements regDate = doc.select("span.txt_info span.txt_num");
 				Elements content = doc.select("a.link_strory");
+				Elements pk = doc.select("div.item_poster strong.tit_item a");
 				// index=16,뮤지컬 공연실황, 알쏭달쏭 캐치! 티니핑 <신비한 상자를 열어라!> 포스터가 없음.
 //				if (i==0) {
 //					poster.add(16, new Element("img")
@@ -87,6 +88,9 @@ public class DataCollectionManager {
 //				}
 				if(i==1)
 				{
+					poster.add(10, new Element("img")
+						    .attr("src", "http://t1.daumcdn.net/movie/movie2020/pc/ico_noimage.png"));
+					
 					regDate.add(12, new Element("span.txt_info span.txt_num").appendText("개봉일 정보 없음"));
 					age.add(12,new Element("span.ico_see").appendText("연령 제한 정보 없음"))	;
 					/*
@@ -148,10 +152,10 @@ public class DataCollectionManager {
 					System.out.println("======================================");
 
 					vo.setRank(k);
-					vo.setCno(i);
+					vo.setCno(i+1);
 					vo.setPoster(poster.get(j).attr("src"));
 					vo.setKey(youtubeKeyData(title.get(j).text()));
-					
+					vo.setPk(Integer.parseInt(pk.get(j).attr("href").substring(pk.get(j).attr("href").lastIndexOf("=")+1)));
 					list.add(vo);
 					k++;
 					

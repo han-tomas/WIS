@@ -12,6 +12,7 @@ public class MovieVO implements Serializable { // 데이터 직렬화
 	private String regDate;
 	private String content;
 	private int cno;
+	private int pk;
 	private String key;
 	
 	
@@ -74,6 +75,12 @@ public class MovieVO implements Serializable { // 데이터 직렬화
 	}
 	public void setKey(String key) {
 		this.key = key;
+	}
+	public int getPk() {
+		return pk;
+	}
+	public void setPk(int pk) {
+		this.pk = pk;
 	}
 	
 }

@@ -27,6 +27,31 @@ public class MovieSystem {
 			}catch(Exception ex) {}
 		}
 	}
+	public List<MovieVO> movieListData(int page)
+	{
+		List<MovieVO> mList = new ArrayList<MovieVO>();
+		int j=0; // 20개씩 나눠주는 변수
+		int rowSize = 20;
+		int start =(page-1)* rowSize;
+		/*
+		 *    1page => 0~19
+		 *    2page => 20~39
+		 *    ...
+		 */
+		for(int i=0; i<list.size();i++)
+		{
+			if(j<rowSize && i>=start)
+			{
+				mList.add(list.get(i));
+				j++;
+			}
+		}
+		return mList;
+	}
+	public int movieTotalPage()
+	{
+		return (int)(Math.ceil(list.size())/20.0);
+	}
 	public List<MovieVO> movieCategoryData(int cno)
 	{
 		List<MovieVO> mList = new ArrayList<MovieVO>();

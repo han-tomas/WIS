@@ -16,7 +16,7 @@ public class ControlPanel extends JPanel {
 	{
 //		setBackground(Color.yellow);
 		setLayout(card);
-		add("hone",hp);
+		add("home",hp);
 		add("find",fp);
 		add("detail",dp);
 		add("news",np);
