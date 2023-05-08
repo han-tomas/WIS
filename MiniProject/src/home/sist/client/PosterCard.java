@@ -16,8 +16,8 @@ public class PosterCard extends JPanel{
 		public PosterCard(MovieVO vo)
 		{
 			setLayout(null);
-			poLa.setBounds(5, 5, 150, 130);
-			tLa.setBounds(5, 130, 150, 20);
+			poLa.setBounds(5, 5, 150, 150);
+			tLa.setBounds(5, 150, 100, 20);
 			
 			add(poLa);
 			add(tLa);
@@ -25,7 +25,7 @@ public class PosterCard extends JPanel{
 			try
 			{
 				URL url = new URL(vo.getPoster());
-				Image img = ImageChange.getImage(new ImageIcon(url), 150, 130);
+				Image img = ImageChange.getImage(new ImageIcon(url), 150, 150);
 				poLa.setIcon(new ImageIcon(img));
 				tLa.setText(vo.getTitle());
 			}catch(Exception ex) {}

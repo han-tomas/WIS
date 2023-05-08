@@ -45,7 +45,7 @@ public class NetworkMain extends JFrame implements ActionListener,Runnable{ //Ac
 		logo.setIcon(new ImageIcon(img));
 		logo.setBounds(930, 15, 240, 200 );
 		mp.setBounds(10, 15, 900, 50);
-		cp.setBounds(10, 80, 900, 650);
+		cp.setBounds(10, 80, 900, 800);
 		sp.setBounds(930, 230, 240,500);
 		
 		add(mp);
@@ -66,7 +66,7 @@ public class NetworkMain extends JFrame implements ActionListener,Runnable{ //Ac
 		mp.add(b4);
 		mp.add(b5);
 		
-		setSize(1200,800); //윈도우 크기 설정
+		setSize(1200,1000); //윈도우 크기 설정
 //		setVisible(true); // 윈도우를 보여준다 => 로그인이 되면 보여준다.
 		setDefaultCloseOperation(EXIT_ON_CLOSE); // x 클릭시 메모리 해제 => 종료
 		

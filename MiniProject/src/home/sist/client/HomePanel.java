@@ -27,13 +27,13 @@ public class HomePanel extends JPanel {
 		setLayout(null);
 		pan.setLayout(new GridLayout(4,5,5,5));
 		
-		pan.setBounds(10, 15, 730, 600);
+		pan.setBounds(10, 15, 730, 700);
 		add(pan);
 		JPanel p = new JPanel();
 		p.add(b1);
 		p.add(pageLa);
 		p.add(b2);
-		p.setBounds(10, 720, 730, 35);
+		p.setBounds(0, 750, 730, 35);
 		add(p);
 	}
 	public void cardPrint(List<MovieVO> list)
