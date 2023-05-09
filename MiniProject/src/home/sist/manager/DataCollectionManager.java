@@ -75,7 +75,7 @@ public class DataCollectionManager {
 				Elements grade = doc.select("span.txt_append span.txt_grade");
 				Elements reservation = doc.select("span.txt_append span.txt_num");
 				Elements regDate = doc.select("span.txt_info span.txt_num");
-				Elements content = doc.select("a.link_strory");
+				Elements content = doc.select("a.link_story");
 				Elements pk = doc.select("div.item_poster strong.tit_item a");
 				// index=16,뮤지컬 공연실황, 알쏭달쏭 캐치! 티니핑 <신비한 상자를 열어라!> 포스터가 없음.
 //				if (i==0) {

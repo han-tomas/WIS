@@ -4,6 +4,8 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -13,13 +15,14 @@ import java.util.StringTokenizer;
 
 import javax.swing.*;
 
+
 import home.sist.common.Function;
 import home.sist.manager.MovieVO;
 
 import home.sist.common.ImageChange;
 import home.sist.manager.*;
 
-public class NetworkMain extends JFrame implements ActionListener,Runnable{ //ActionListener 버튼 클릭
+public class NetworkMain extends JFrame implements ActionListener,Runnable,MouseListener{ //ActionListener 버튼 클릭
 	MenuPanel mp;
 	ControlPanel cp;
 	SidePanel sp;
@@ -30,6 +33,12 @@ public class NetworkMain extends JFrame implements ActionListener,Runnable{ //Ac
 	Socket s;
 	BufferedReader in;
 	OutputStream out;
+	
+	String myId;
+	
+	int selectRow =-1;
+	SendMessage sm = new SendMessage();
+	RecvMessage rm = new RecvMessage();
 	
 	int curpage=1;
 	int totalpage=0;
@@ -68,7 +77,7 @@ public class NetworkMain extends JFrame implements ActionListener,Runnable{ //Ac
 //		setVisible(true); // 윈도우를 보여준다 => 로그인이 되면 보여준다.
 		setDefaultCloseOperation(EXIT_ON_CLOSE); // x 클릭시 메모리 해제 => 종료
 		
-		// 홈, 검색, 영화 상세 보기, 영화 뉴스, 채팅
+		// 홈, 검색, 영화 뉴스, 채팅
 		b1.addActionListener(this);
 		b2.addActionListener(this);
 		b3.addActionListener(this);
@@ -82,11 +91,20 @@ public class NetworkMain extends JFrame implements ActionListener,Runnable{ //Ac
 		List<MovieVO> list = ms.movieListData(curpage);
 		cp.hp.cardInit(list);
 		cp.hp.cardPrint(list);
-		
+		// Homepage
 		totalpage = ms.movieTotalPage();
 		cp.hp.b1.addActionListener(this); // 이전
 		cp.hp.b2.addActionListener(this); // 다음
 		cp.hp.pageLa.setText(curpage+" page/"+totalpage+" pages");
+		
+		cp.chp.b1.addActionListener(this);
+		cp.chp.b2.addActionListener(this);
+		cp.chp.table.addMouseListener(this);
+		
+		sm.b1.addActionListener(this);
+		sm.b2.addActionListener(this);
+		rm.b1.addActionListener(this);
+		rm.b2.addActionListener(this);
 		
 		
 	}
@@ -207,6 +225,66 @@ public class NetworkMain extends JFrame implements ActionListener,Runnable{ //Ac
 				movieDisplay();
 			}
 		}
+		else if(e.getSource()==cp.chp.b2)
+		{
+			// 정보 보기 
+			if(selectRow==-1)
+			{
+				JOptionPane.showMessageDialog(this, "정보볼 대상을 선택하세요");
+				return;
+			}
+			// 선택된 경우
+			String youId=cp.chp.table.getValueAt(selectRow, 0).toString();
+			try
+			{
+				// 선택된 아이디의 정보를 보여달라 (서버에 요청)
+				out.write((Function.INFO+"|"+youId+"\n").getBytes());
+				// out.write=> 서버요청 ==> \n포함되야 된다 
+				// 처리 => 서버 => 결과값을 받아서 클러이언트에서 출력 
+			}catch(Exception ex){}
+		}
+		else if(e.getSource()==cp.chp.b1)
+		{
+			// 쪽지보내기
+			sm.ta.setText("");
+			String youId=cp.chp.table.getValueAt(selectRow, 0).toString();
+			sm.tf.setText(youId);
+			sm.setVisible(true);
+		}
+		// 쪽지보내기 관련
+		else if(e.getSource()==sm.b2)
+		{
+			sm.setVisible(false);
+		}
+		else if(e.getSource()==rm.b2)
+		{
+			rm.setVisible(false);
+		}
+		else if(e.getSource()==sm.b1)
+		{
+			String youId=sm.tf.getText();
+			String msg=sm.ta.getText();
+			if(msg.length()<1)
+			{
+				sm.ta.requestFocus();
+				return;
+			}
+			try
+			{
+				out.write((Function.MSGSEND+"|"
+						+youId+"|"+msg+"\n").getBytes());
+				// youId를 찾아서 msg를 보내주는 기능 수행 
+			}catch(Exception ex){}
+			// 창을 감춘다 
+			sm.setVisible(false);
+		}
+		else if(e.getSource()==rm.b1)
+		{
+			sm.tf.setText(rm.tf.getText());
+			sm.ta.setText("");
+			sm.setVisible(true);
+			rm.setVisible(false);
+		}
 		
 	}
 	@Override
@@ -237,6 +315,7 @@ public class NetworkMain extends JFrame implements ActionListener,Runnable{ //Ac
 					case Function.MYLOG:
 					{
 						setTitle(st.nextToken());
+						myId=st.nextToken();
 						login.setVisible(false);
 						setVisible(true);
 					}
@@ -249,9 +328,67 @@ public class NetworkMain extends JFrame implements ActionListener,Runnable{ //Ac
 						
 					}
 					break;
+					case Function.INFO:
+					{
+						String data="아이디 : "+st.nextToken()+"\n"+"이름 : "+st.nextToken()+"\n"+"성별 : "+st.nextToken();
+						JOptionPane.showMessageDialog(this, data);
+					}
+					break;
+					case Function.MSGSEND:
+					{
+						String id= st.nextToken();
+						String strMsg = st.nextToken();
+						rm.tf.setText(id);
+						rm.ta.setText(strMsg);
+						rm.setVisible(true);
+					}
+					break;
 				}
 			}
 		}catch(Exception ex) {}
+	}
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getSource()==cp.chp.table)
+		{
+			//if(e.getClickCount()==2) // 더블 클릭
+			//{
+				selectRow = cp.chp.table.getSelectedRow();
+				String id = cp.chp.table.getValueAt(selectRow, 0).toString();
+//				JOptionPane.showMessageDialog(this, "선택된 ID : "+id);
+				if(id.equals(myId))
+				{
+					cp.chp.b1.setEnabled(false);
+					cp.chp.b2.setEnabled(false);
+				}
+				else
+				{
+					cp.chp.b1.setEnabled(true);
+					cp.chp.b2.setEnabled(true);
+				}
+			//}
+		}
+	}
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

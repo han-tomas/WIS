@@ -77,6 +77,20 @@ public class MovieSystem {
 		}
 		return mList;
 	}
+	public MovieVO movieDetailData(String title)
+	{
+		MovieVO vo = new MovieVO();
+		for(MovieVO dvo:list)
+		{
+			if(dvo.getTitle().equals(title))
+			{
+				vo=dvo;
+				break;
+			}
+		}
+		return vo;
+	}
+	
 	public static void main(String[] args) {
 		MovieSystem ms = new MovieSystem();
 		try

@@ -203,7 +203,7 @@ public class Server implements Runnable{
 						waitVc.add(this);
 						
 						// 로그인창은 사라지고 main창을 보여주는 기능
-						messageTo(Function.MYLOG+"|"+name);
+						messageTo(Function.MYLOG+"|"+name+"|"+id);
 						
 						// 로그인하는 접속자에게 모든 정보를 전송
 						for(Client user : waitVc) {
@@ -217,6 +217,46 @@ public class Server implements Runnable{
 				    	String color=st.nextToken();
 				    	messageAll(Function.CHAT+"|["+name+"]"
 				    			+strMsg+"|"+color);
+				    }
+				    break;
+				    case Function.INFO:
+				    {
+				    	// 상대방의 ID를 받는다
+				    	String youId = st.nextToken();
+				    	for(Client user:waitVc)
+				    	{
+				    		// 정보를 볼 대상을 찾는다.
+				    		/*
+				    		 *  서버의 역할
+				    		 *  1) 저장 (클라이언트 정보)
+				    		 *     => waitVc(Vector)
+				    		 *  2) 검색 : ID, Name
+				    		 *  3) 수정 : ID, PWD ...
+				    		 *  4) 클라이언트로 전송 기능
+				    		 *  5) 요청 처리 기능   
+				    		 */
+				    		if(youId.equals(user.id))
+				    		{
+				    			//전송기능
+				    			messageTo(Function.INFO+"|"+user.id+"|"+user.name+"|"+user.sex);
+				    			break;
+				    		}
+				    	}
+				    }
+				    break;
+				    case Function.MSGSEND:
+				    {
+				    	String youId=st.nextToken();
+				    	String strMsg=st.nextToken();
+				    	for(Client user:waitVc)
+				    	{
+				    	   if(youId.equals(user.id))
+				    	   {
+				    		   user.messageTo(Function.MSGSEND+"|"
+				    				   +id+"|"+strMsg);
+				    		   break;
+				    	   }
+				    	}
 				    }
 				    break;
 				    
