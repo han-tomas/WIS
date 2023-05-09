@@ -23,7 +23,7 @@ public class NetworkMain extends JFrame implements ActionListener,Runnable{ //Ac
 	MenuPanel mp;
 	ControlPanel cp;
 	SidePanel sp;
-	JButton b1,b2,b3,b4,b5; //홈, 영화검색, 영화 상세 정보, 영화 뉴스, 채팅
+	JButton b1,b2,b3,b4; //홈, 영화검색, 영화 상세 정보, 영화 뉴스, 채팅
 	JLabel logo;
 	Login login = new Login(); // 로그인 클래스 호출
 	MovieSystem ms = new MovieSystem();
@@ -55,16 +55,14 @@ public class NetworkMain extends JFrame implements ActionListener,Runnable{ //Ac
 		
 		b1 = new JButton("홈");
 		b2 = new JButton("영화 검색");
-		b3 = new JButton("영화 상세 정보");
-		b4 = new JButton("뉴스");
-		b5 = new JButton("채팅");
+		b3 = new JButton("뉴스");
+		b4 = new JButton("채팅");
 		
 		mp.setLayout(new GridLayout(1, 5, 0, 10));
 		mp.add(b1);
 		mp.add(b2);
 		mp.add(b3);
 		mp.add(b4);
-		mp.add(b5);
 		
 		setSize(1200,1000); //윈도우 크기 설정
 //		setVisible(true); // 윈도우를 보여준다 => 로그인이 되면 보여준다.
@@ -75,7 +73,6 @@ public class NetworkMain extends JFrame implements ActionListener,Runnable{ //Ac
 		b2.addActionListener(this);
 		b3.addActionListener(this);
 		b4.addActionListener(this);
-		b5.addActionListener(this);
 		// 로그인
 		login.b1.addActionListener(this);
 		login.b2.addActionListener(this);
@@ -125,13 +122,9 @@ public class NetworkMain extends JFrame implements ActionListener,Runnable{ //Ac
 		}
 		else if(e.getSource()==b3)
 		{
-			cp.card.show(cp, "detail");
-		}
-		else if(e.getSource()==b4)
-		{
 			cp.card.show(cp, "news");
 		}
-		else if(e.getSource()==b5)
+		else if(e.getSource()==b4)
 		{
 			cp.card.show(cp, "chat");
 		}
