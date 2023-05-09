@@ -9,7 +9,8 @@ public class DetailPanel extends JPanel implements ActionListener{
 	JLabel imgLa;
 	JLabel la1,la2,la3,la4;// 제목, 연령제한,줄거리, 개봉일
 	JButton b1,b2; // 동영상, 목록
-	JLabel titleLa,ageLa,contentLa,regDateLa,keyLa;
+	JLabel titleLa,ageLa,/*contentLa,*/regDateLa,keyLa;
+	JTextPane contentLa;
 	ControlPanel cp;
 	public DetailPanel(ControlPanel cp)
 	{
@@ -26,7 +27,10 @@ public class DetailPanel extends JPanel implements ActionListener{
 		
 		titleLa = new JLabel("");
 		ageLa = new JLabel("");
-		contentLa = new JLabel("");
+//		contentLa = new JLabel("");
+		contentLa = new JTextPane();
+		contentLa.setEditable(false);
+		JScrollPane js = new JScrollPane(contentLa);
 		regDateLa = new JLabel("");
 		keyLa = new JLabel("");
 		
@@ -38,9 +42,9 @@ public class DetailPanel extends JPanel implements ActionListener{
 		la2.setBounds(100, 425, 60, 40);
 		ageLa.setBounds(165, 425, 300, 40);
 		la3.setBounds(100, 475, 60, 40);
-		contentLa.setBounds(165, 475, 700, 40);
-		la4.setBounds(100, 525, 60, 40);
-		regDateLa.setBounds(165, 525, 300, 40);
+		js.setBounds(165, 475, 700, 60);
+		la4.setBounds(100, 565, 60, 40);
+		regDateLa.setBounds(165, 565, 300, 40);
 		
 		keyLa.setBounds(100, 625, 300, 40);
 		keyLa.setVisible(false);
@@ -55,7 +59,7 @@ public class DetailPanel extends JPanel implements ActionListener{
 		add(keyLa);
 		add(la1);add(titleLa);
 		add(la2);add(ageLa);
-		add(la3);add(contentLa);
+		add(la3);add(js);
 		add(la4);add(regDateLa);
 		add(p);
 		

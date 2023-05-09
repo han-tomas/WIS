@@ -18,7 +18,7 @@ public class NewsCard extends JPanel{
 		
 		// 배치
 		titleLa.setBounds(10, 10, 450, 35);
-		js.setBounds(10, 50, 750, 100);
+		js.setBounds(10, 50, 600, 50);
 		dateLa.setBounds(470, 10, 200, 15);
 		
 		// 추가
