@@ -23,7 +23,7 @@ import home.sist.client.PosterCard;
 import home.sist.manager.MovieVO;
 
 public class HomePanel extends JPanel implements MouseListener{
-	PosterCard[] pcs = new PosterCard[20];
+	PosterCard[] pcs = new PosterCard[12];
 	JPanel pan = new JPanel();
 	JButton b1,b2;
 	JLabel pageLa;
@@ -37,7 +37,7 @@ public class HomePanel extends JPanel implements MouseListener{
 		b2= new JButton("다음");
 		pageLa = new JLabel("0 page /0 page");
 		setLayout(null);
-		pan.setLayout(new GridLayout(4,5,5,5));
+		pan.setLayout(new GridLayout(3,4,5,5));
 		
 		pan.setBounds(10, 15, 900, 700);
 		add(pan);

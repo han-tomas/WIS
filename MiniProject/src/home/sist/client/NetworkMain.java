@@ -67,7 +67,7 @@ public class NetworkMain extends JFrame implements ActionListener,Runnable,Mouse
 		b3 = new JButton("뉴스");
 		b4 = new JButton("채팅");
 		
-		mp.setLayout(new GridLayout(1, 5, 0, 10));
+		mp.setLayout(new GridLayout(1, 4, 0, 10));
 		mp.add(b1);
 		mp.add(b2);
 		mp.add(b3);
