@@ -85,7 +85,7 @@ public class HomePanel extends JPanel implements MouseListener{
 				{
 					//titleLa,ageLa,contentLa,regDateLa,keyLa;
 					URL url = new URL(vo.getPoster());
-					Image img = ImageChange.getImage(new ImageIcon(url), 530, 350);
+					Image img = ImageChange.getImage(new ImageIcon(url), 400, 600);
 					cp.dp.imgLa.setIcon(new ImageIcon(img));
 					cp.dp.titleLa.setText(vo.getTitle());
 					cp.dp.ageLa.setText(vo.getAge());

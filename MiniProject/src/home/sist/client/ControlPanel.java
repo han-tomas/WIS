@@ -22,6 +22,8 @@ public class ControlPanel extends JPanel {
 	BoardListPanel bp;
 	BoardInsertPanel ip;
 	BoardDetailPanel bdp;
+	BoardUpdatePanel bup;
+	BoardDeletePanel bdelp;
 	public ControlPanel()
 	{
 //		setBackground(Color.yellow);
@@ -30,6 +32,8 @@ public class ControlPanel extends JPanel {
 		bp= new BoardListPanel(this);
 		ip= new BoardInsertPanel(this);
 		bdp=new BoardDetailPanel(this);
+		bup=new BoardUpdatePanel(this);
+		bdelp=new BoardDeletePanel(this);
 		setLayout(card);
 		add("home",hp);
 		add("find",fp);
@@ -39,5 +43,7 @@ public class ControlPanel extends JPanel {
 		add("board",bp);
 		add("insert",ip);
 		add("bdp",bdp);
+		add("bup",bup);
+    	add("delete",bdelp);
 	}
 }

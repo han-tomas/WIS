@@ -21,19 +21,23 @@ public class DataCollectionManager {
 		String key="";
 		try
 		{
-			String url="https://www.youtube.com/results?search_query="+URLEncoder.encode(title,"UTF-8");
-			//https://www.youtube.com/results?search_query=%EC%95%84%EC%9D%B4%EB%B8%8C
+			String url="https://search.naver.com/search.naver?where=video&sm=tab_jum&query="+URLEncoder.encode(title,"UTF-8");
 			Document doc = Jsoup.connect(url).get();
-			String data = doc.toString();
-			Pattern p = Pattern.compile("/watch\\?v=[^가-힣]+");
-			Matcher m = p.matcher(data);
-			while(m.find())
+			Elements data = doc.select(".btn_save"); 
+			if (data.size() > 0) 
 			{
-				String s=m.group();
-				s=s.substring(s.indexOf("=")+1,s.indexOf("\""));
-				key=s;
-				break;
-			}
+				int i=0;
+				while(true) 
+				{
+					if (data.get(i).attr("data-url").toString().contains("tv.naver.com"))
+					{
+						String video = data.get(i).attr("data-url").toString();
+						return video.substring(video.indexOf("v/")+2);
+					}
+					i++;
+				}
+	        }
+			
 			
 		}catch(Exception ex) {}
 		return key;

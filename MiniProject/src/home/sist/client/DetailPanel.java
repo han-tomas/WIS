@@ -36,23 +36,23 @@ public class DetailPanel extends JPanel implements ActionListener{
 		
 		// 배치
 		setLayout(null);
-		imgLa.setBounds(100, 15, 530, 350);
-		la1.setBounds(100, 375, 60, 40);
-		titleLa.setBounds(165, 375, 300, 40);
-		la2.setBounds(100, 425, 60, 40);
-		ageLa.setBounds(165, 425, 300, 40);
-		la3.setBounds(100, 475, 60, 40);
-		js.setBounds(165, 475, 700, 60);
-		la4.setBounds(100, 565, 60, 40);
-		regDateLa.setBounds(165, 565, 300, 40);
+		imgLa.setBounds(0, 0, 400, 600);
+		la1.setBounds(420, 15, 100, 40);
+		titleLa.setBounds(480, 15, 300, 40);
+		la2.setBounds(420, 70, 60, 40);
+		ageLa.setBounds(480, 70, 100, 40);
+		la3.setBounds(420, 125, 60, 40);
+		js.setBounds(480, 135, 400, 200);
+		la4.setBounds(420, 350, 60, 40);
+		regDateLa.setBounds(480, 350, 100, 40);
 		
-		keyLa.setBounds(100, 625, 300, 40);
+		keyLa.setBounds(100, 300, 300, 40);
 		keyLa.setVisible(false);
 		
 		JPanel p = new JPanel();
 		p.add(b1);
 		p.add(b2);
-		p.setBounds(100, 725, 365, 40);
+		p.setBounds(450, 400, 365, 40);
 		
 		// 윈도우 추가
 		add(imgLa);
@@ -76,7 +76,7 @@ public class DetailPanel extends JPanel implements ActionListener{
 			try
 			{
 				Runtime.getRuntime().exec("C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe "
-											+"http://youtube.com/embed/"
+											+"https://tv.naver.com/v/"
 						 					+keyLa.getText());
 				
 			}catch(Exception ex) {}
