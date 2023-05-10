@@ -7,6 +7,6 @@ import javax.swing.JPanel;
 public class MenuPanel extends JPanel {
 	public MenuPanel()
 	{
-		setBackground(Color.orange);
+//		setBackground(Color.orange);
 	}
 }

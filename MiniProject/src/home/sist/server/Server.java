@@ -61,6 +61,8 @@ package home.sist.server;
  */
 import java.util.*;
 
+
+
 import home.sist.common.Function;
 
 import java.net.*;
@@ -259,6 +261,26 @@ public class Server implements Runnable{
 				    	}
 				    }
 				    break;
+				    case Function.EXIT:
+					{
+						String mid=st.nextToken();
+						int i=0;
+						for(Client user : waitVc)
+						{
+							if(user.id.equals(mid))
+							{
+								user.messageTo(Function.MYEXIT+"|"+id);
+								waitVc.remove(i);
+								in.close();
+								out.close();
+							}
+							i++;
+						}
+						
+						// 전체 메세지
+						messageAll(Function.EXIT+"|"+mid);
+					}
+					break;
 				    
 				}
 			}catch(Exception ex){}

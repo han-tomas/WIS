@@ -26,7 +26,7 @@ public class NetworkMain extends JFrame implements ActionListener,Runnable,Mouse
 	MenuPanel mp;
 	ControlPanel cp;
 	SidePanel sp;
-	JButton b1,b2,b3,b4; //홈, 영화검색, 영화 상세 정보, 영화 뉴스, 채팅
+	JButton b1,b2,b3,b4,b5,b6; //홈, 영화검색, 영화 상세 정보, 영화 뉴스, 채팅, 게시판, 나가기
 	JLabel logo;
 	Login login = new Login(); // 로그인 클래스 호출
 	MovieSystem ms = new MovieSystem();
@@ -66,22 +66,28 @@ public class NetworkMain extends JFrame implements ActionListener,Runnable,Mouse
 		b2 = new JButton("영화 검색");
 		b3 = new JButton("뉴스");
 		b4 = new JButton("채팅");
+		b5 = new JButton("자유게시판");
+		b6 = new JButton("나가기");
 		
-		mp.setLayout(new GridLayout(1, 4, 0, 10));
+		mp.setLayout(new GridLayout(1, 6, 0, 10));
 		mp.add(b1);
 		mp.add(b2);
 		mp.add(b3);
 		mp.add(b4);
+		mp.add(b5);
+		mp.add(b6);
 		
 		setSize(1200,1000); //윈도우 크기 설정
 //		setVisible(true); // 윈도우를 보여준다 => 로그인이 되면 보여준다.
-		setDefaultCloseOperation(EXIT_ON_CLOSE); // x 클릭시 메모리 해제 => 종료
+		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE); // x 클릭시 메모리 해제 => 종료
 		
 		// 홈, 검색, 영화 뉴스, 채팅
 		b1.addActionListener(this);
 		b2.addActionListener(this);
 		b3.addActionListener(this);
 		b4.addActionListener(this);
+		b5.addActionListener(this);
+		b6.addActionListener(this);
 		// 로그인
 		login.b1.addActionListener(this);
 		login.b2.addActionListener(this);
@@ -146,6 +152,11 @@ public class NetworkMain extends JFrame implements ActionListener,Runnable,Mouse
 		{
 			cp.card.show(cp, "chat");
 		}
+		else if(e.getSource()==b5)
+		{
+			cp.card.show(cp,"board");
+		}
+		
 		else if(e.getSource()==login.b1) // 로그인 버튼을 누르면
 		{
 //			login.setVisible(false); // 로그인 창은 사라지고
@@ -285,6 +296,13 @@ public class NetworkMain extends JFrame implements ActionListener,Runnable,Mouse
 			sm.setVisible(true);
 			rm.setVisible(false);
 		}
+		else if(e.getSource()==b6) // 나가기
+		{
+			try
+			{
+				out.write((Function.EXIT+"|"+myId+"\n").getBytes());
+			}catch(Exception ex) {}
+		}
 		
 	}
 	@Override
@@ -341,6 +359,26 @@ public class NetworkMain extends JFrame implements ActionListener,Runnable,Mouse
 						rm.tf.setText(id);
 						rm.ta.setText(strMsg);
 						rm.setVisible(true);
+					}
+					break;
+					case Function.MYEXIT:
+					{
+						dispose(); // 윈도우 메모리 해제
+						System.exit(0); // 프로그램 종료
+					}
+					break;
+					case Function.EXIT:
+					{
+						String mid=st.nextToken();
+						for(int i=0;i<cp.chp.model.getRowCount();i++)
+						{
+							String uid=cp.chp.table.getValueAt(i, 0).toString();
+							if(mid.equals(uid))
+							{
+								cp.chp.model.removeRow(i);
+								break;
+							}
+						}
 					}
 					break;
 				}

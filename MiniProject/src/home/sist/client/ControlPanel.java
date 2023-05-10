@@ -5,6 +5,10 @@ import java.awt.Color;
 
 import javax.swing.JPanel;
 
+import home.sist.client.BoardDetailPanel;
+import home.sist.client.BoardInsertPanel;
+import home.sist.client.BoardListPanel;
+
 import home.sist.client.DetailPanel;
 import home.sist.client.HomePanel;
 
@@ -15,16 +19,25 @@ public class ControlPanel extends JPanel {
 	CardLayout card = new CardLayout();
 	HomePanel hp;
 	DetailPanel dp;
+	BoardListPanel bp;
+	BoardInsertPanel ip;
+	BoardDetailPanel bdp;
 	public ControlPanel()
 	{
 //		setBackground(Color.yellow);
 		dp = new DetailPanel(this);
 		hp= new HomePanel(this);
+		bp= new BoardListPanel(this);
+		ip= new BoardInsertPanel(this);
+		bdp=new BoardDetailPanel(this);
 		setLayout(card);
 		add("home",hp);
 		add("find",fp);
 		add("news",np);
 		add("chat",chp);
 		add("detail",dp);
+		add("board",bp);
+		add("insert",ip);
+		add("bdp",bdp);
 	}
 }
