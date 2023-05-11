@@ -26,15 +26,15 @@ public class NewsPanel extends JPanel implements ActionListener{
 			cards[i]=new NewsCard();
 		}
 		pan=new JPanel();
-		pan.setLayout(new GridLayout(10, 1, 5, 5));
+		pan.setLayout(new GridLayout(10, 1, 50, 5));
 		setLayout(null);
 		
 		//  배치
 		tf.setBounds(10, 15, 620, 30);
 		b.setBounds(645, 15, 100, 30);
-		pan.setPreferredSize(new Dimension(800,700));
+		pan.setPreferredSize(new Dimension(600,1500));
 		pane=new JScrollPane(pan);
-		pane.setPreferredSize(new Dimension(700,700));
+		pane.setPreferredSize(new Dimension(600,1500));
 		pane.setBounds(10, 55, 800, 700);
 		
 		add(tf);

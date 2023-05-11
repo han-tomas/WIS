@@ -24,20 +24,16 @@ public class DataCollectionManager {
 			String url="https://search.naver.com/search.naver?where=video&sm=tab_jum&query="+URLEncoder.encode(title,"UTF-8");
 			Document doc = Jsoup.connect(url).get();
 			Elements data = doc.select(".btn_save"); 
-			if (data.size() > 0) 
-			{
+			if (data.size() > 0) {
 				int i=0;
-				while(true) 
-				{
-					if (data.get(i).attr("data-url").toString().contains("tv.naver.com"))
-					{
+				while(true) {
+					if (data.get(i).attr("data-url").toString().contains("tv.naver.com")) {
 						String video = data.get(i).attr("data-url").toString();
 						return video.substring(video.indexOf("v/")+2);
 					}
 					i++;
 				}
 	        }
-			
 			
 		}catch(Exception ex) {}
 		return key;
@@ -49,7 +45,7 @@ public class DataCollectionManager {
 		ObjectOutputStream oos = null; 
 		try
 		{
-			fos = new FileOutputStream("c:\\java_datas\\DaumMovie.txt"); // 데이터 출력
+			fos = new FileOutputStream("c:\\java_datas\\DaumMovie.txt"); // 데이터 출력s
 			oos = new ObjectOutputStream(fos);// 데이터 객체 단위 저장
 			
 			String[] urls = {
