@@ -38,13 +38,20 @@ public class DetailPanel extends JPanel implements ActionListener{
 		setLayout(null);
 		imgLa.setBounds(0, 0, 400, 600);
 		la1.setBounds(420, 15, 100, 40);
-		titleLa.setBounds(480, 15, 300, 40);
+		titleLa.setBounds(490, 15, 300, 40);
+		la1.setFont(new Font("나눔고딕", 0, 15));
+		titleLa.setFont(new Font("나눔고딕",Font.BOLD,20));
 		la2.setBounds(420, 70, 60, 40);
-		ageLa.setBounds(480, 70, 100, 40);
+		ageLa.setBounds(490, 70, 300, 40);
+		la2.setFont(new Font("나눔고딕", 0, 15));
+		ageLa.setFont(new Font("나눔고딕",Font.BOLD,20));
 		la3.setBounds(420, 125, 60, 40);
-		js.setBounds(480, 135, 400, 200);
+		js.setBounds(490, 135, 400, 200);
+		la3.setFont(new Font("나눔고딕", 0, 15));
 		la4.setBounds(420, 350, 60, 40);
-		regDateLa.setBounds(480, 350, 100, 40);
+		regDateLa.setBounds(490, 350, 100, 40);
+		la4.setFont(new Font("나눔고딕", 0, 15));
+		regDateLa.setFont(new Font("나눔고딕",Font.BOLD,20));
 		
 		keyLa.setBounds(100, 300, 300, 40);
 		keyLa.setVisible(false);

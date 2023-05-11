@@ -51,15 +51,16 @@ public class SidePanel extends JPanel {
 		table.getColumn("제목").setPreferredWidth(160);
 		table.getColumn("평점").setPreferredWidth(40);
 		table.getTableHeader().setReorderingAllowed(false);
-		setLayout(null);
-		
-		la1 = new JLabel("    ★☆7.0점 이상 영화 추천☆★");
-		la1.setFont(new Font("나눔고딕",Font.BOLD,15));
-		
-		JScrollPane js = new JScrollPane(table);
 		table.setRowHeight(50);
-		js.setBounds(0, 23, 240, 518);
+		JScrollPane js = new JScrollPane(table);
 		
+		la1 = new JLabel("★☆7.0점 이상 영화 추천☆★");
+		la1.setFont(new Font("나눔고딕",Font.BOLD,15));
+		la1.setHorizontalAlignment(JLabel.CENTER);
+		
+		
+		setLayout(null);
+		js.setBounds(0, 23, 240, 518);
 		la1.setBounds(0, 0, 240, 20);
 
 		add(la1);

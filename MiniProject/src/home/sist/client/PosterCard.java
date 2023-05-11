@@ -18,7 +18,8 @@ public class PosterCard extends JPanel{
 			setLayout(null);
 			poLa.setBounds(5, 5, 200, 200);
 			tLa.setBounds(5, 200, 200, 30);
-			
+			tLa.setFont(new Font("나눔고딕",Font.BOLD,15));
+			tLa.setHorizontalAlignment(JLabel.CENTER);
 			add(poLa);
 			add(tLa);
 			
