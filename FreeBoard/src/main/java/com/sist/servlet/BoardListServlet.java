@@ -50,7 +50,7 @@ public class BoardListServlet extends HttpServlet {
 		out.println("<table width=700 class=table_content>");
 		out.println("<tr>"); // <tr>은 행
 		out.println("<td>"); // <td>는 셀
-		out.println("<a href=#>새글</a>");
+		out.println("<a href=BoardInsertServlet>새글</a>");
 		/*
 		 * <a> : 사용자가 클릭하면 다른 웹 페이지, 문서, 위치, 파일 또는 URL로 이동하도록 합니다.
 		 * href: <a> 태그의 필수 속성으로, 클릭 시 이동하고자 하는 대상의 URL을 지정합니다.
