@@ -88,6 +88,7 @@ public class FoodDAO {
 		}
 		return list;
 	}
+	// 1-1. 카테고리 정보
 	public CategoryVO food_category_info(int cno)
 	{
 		CategoryVO vo = new CategoryVO();
@@ -111,5 +112,44 @@ public class FoodDAO {
 			disConnection();
 		}
 		return vo;
+	}
+	// 2. 카테고리별 맛집 
+	public List<FoodVO> food_category_data(int cno)
+	{
+		List<FoodVO> list = new ArrayList<FoodVO>();
+		try
+		{
+			getConnection();
+			String sql = "SELECT fno,name,poster,address,phone,type,score "
+					+ "FROM food_house "
+					+ "WHERE cno="+cno;
+			ps=conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next())
+			{
+				FoodVO vo = new FoodVO();
+				vo.setFno(rs.getInt(1));
+				vo.setName(rs.getString(2));
+				String poster = rs.getString(3);
+				poster=poster.substring(0,poster.indexOf("^"));
+				poster=poster.replace("#", "&");
+				vo.setPoster(poster);
+				String address = rs.getString(4);
+				address = address.substring(0,address.lastIndexOf("지"));
+				vo.setAddress(address.trim());
+				vo.setPhone(rs.getString(5));
+				vo.setType(rs.getString(6));
+				vo.setScore(rs.getDouble(7));
+				list.add(vo);
+			}
+		}catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		finally
+		{
+			disConnection();
+		}
+		return list;
 	}
 }
