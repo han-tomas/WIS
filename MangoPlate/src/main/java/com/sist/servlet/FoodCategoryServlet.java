@@ -40,7 +40,7 @@ public class FoodCategoryServlet extends HttpServlet {
 			CategoryVO vo=list.get(i);
 			out.println("<div class=\"col-md-3\">");// 한줄에 4개 출력 
 			out.println("<div class=\"thumbnail\">");
-			out.println("<a href=#>");
+			out.println("<a href=\"FoodListServlet?cno="+vo.getCno()+"\">");
 			out.println("<img src=\""+vo.getPoster()+"\" style=\"width:100%\">");
 			out.println("<div class=\"caption\">");
 			out.println("<p style=\"font-size:9px\">"+vo.getTitle()+"</p>");
@@ -58,7 +58,7 @@ public class FoodCategoryServlet extends HttpServlet {
 			CategoryVO vo=list.get(i);
 			out.println("<div class=\"col-md-4\">");// 한줄에 4개 출력 
 			out.println("<div class=\"thumbnail\">");
-			out.println("<a href=#>");
+			out.println("<a href=\"FoodListServlet?cno="+vo.getCno()+"\">");
 			out.println("<img src=\""+vo.getPoster()+"\" style=\"width:100%\">");
 			out.println("<div class=\"caption\">");
 			out.println("<p style=\"font-size:9px\">"+vo.getTitle()+"</p>");
@@ -76,7 +76,7 @@ public class FoodCategoryServlet extends HttpServlet {
 			CategoryVO vo=list.get(i);
 			out.println("<div class=\"col-md-3\">");// 한줄에 4개 출력 
 			out.println("<div class=\"thumbnail\">");
-			out.println("<a href=#>");
+			out.println("<a href=\"FoodListServlet?cno="+vo.getCno()+"\">");
 			out.println("<img src=\""+vo.getPoster()+"\" style=\"width:100%\">");
 			out.println("<div class=\"caption\">");
 			out.println("<p style=\"font-size:9px\">"+vo.getTitle()+"</p>");
