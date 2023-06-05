@@ -7,13 +7,13 @@ import org.jsoup.select.Elements;
 
 import com.sist.dao.*;
 public class DataCollection {
-	public void  genieMusicCategoryData()
+	public void GenieMusicGenreData()
 	{
 		GenieMusicDAO dao = GenieMusicDAO.newInstance();
 		try
 		{
 			String[] urls = {
-			         "https://www.genie.co.kr/chart/genre?ditc=D&ymd=20230502&genrecode=M0100",
+			         "https://www.genie.co.kr/chart/genre?ditc=D&ymd=20230604&genrecode=M0100",
 			         "https://www.genie.co.kr/chart/genre?ditc=D&ymd=20230502&genrecode=M0200",
 			         "https://www.genie.co.kr/chart/genre?ditc=D&ymd=20230502&genrecode=M0300",
 			         "https://www.genie.co.kr/chart/genre?ditc=D&ymd=20230502&genrecode=M0107",
@@ -23,35 +23,31 @@ public class DataCollection {
 			for(int i=0;i<urls.length;i++)
 			{
 				/*
-				GNO           NOT NULL NUMBER
-				RANK          NOT NULL NUMBER
-				TITLE         NOT NULL VARCHAR2(50)
-				SINGER        NOT NULL VARCHAR2(50)
-				ALBUM         NOT NULL VARCHAR2(50)
-				IDCREMENT     NOT NULL NUMBER
-				STATE         NOT NULL VARCHAR2(6)
-				*/
+				  	private int gno,rank, idcrement;
+					private String title,singer,album,state,poster;
+				 */
 				Document doc = Jsoup.connect(urls[i]).get();
-				Elements rk = doc.select("td.rank");
-				Elements title = doc.select("td.info a.title");
-				Elements singer = doc.select("td.info a.artist");
-				Elements album = doc.select("td.info a.albumtitle");
-				Elements poster = doc.select("a.cover img");
-				Elements etc = doc.select("span.rank");
+				Elements ranking = doc.select("td.number");
+				Elements title = doc.select("table.list-wrap td.info a.title");
+				Elements singer = doc.select("table.list-wrap td.info a.artist");
+				Elements album = doc.select("table.list-wrap td.info a.albumtitle");
+				Elements poster = doc.select("table.list-wrap a.cover img");
+				Elements etc = doc.select("table.list-wrap span.rank");
 				for(int j=0;j<title.size();j++)
 				{
-					String rank = rk.get(j).text();
-					rank=rank.replaceAll("[가-힣]", "");
-					System.out.println("순위 : "+Integer.parseInt(rank));
+					String s = ranking.get(j).text();
+					s= s.substring(0,2);
+					s= s.trim();
+					int rank = Integer.parseInt(s);
+					System.out.println("순위 : "+rank);
 					System.out.println("카테고리 번호 : "+(i+1));
 					System.out.println(title.get(j).text());
 					System.out.println(singer.get(j).text());
 					System.out.println(album.get(j).text());
 					System.out.println(poster.get(j).attr("src"));
 					String ss = etc.get(j).text();
-//					System.out.println(ss);
 					String state ="";
-					String id=""; // 등폭
+					String id="";
 					if(ss.contains("유지"))
 					{
 						state="유지";
@@ -70,20 +66,26 @@ public class DataCollection {
 					}
 					System.out.println("상태 : "+state);
 					System.out.println("등폭 : "+id);
-					GenieMusicVO vo = new GenieMusicVO();
-					vo.setRank(Integer.parseInt(rank));
+					System.out.println("=================================");
+					GenieCategoryVO vo = new GenieCategoryVO();
+					vo.setGno(i+1);
+					vo.setRank(rank);
 					vo.setTitle(title.get(j).text());
 					vo.setSinger(singer.get(j).text());
+					vo.setAlbum(album.get(j).text());
+					vo.setPoster(poster.get(j).attr("src"));
+					vo.setState(state);
+					vo.setIdcrement(Integer.parseInt(id));
+					dao.genieMusicCategoryInsert(vo);
 					
 				}
+				System.out.println("저장완료");
 			}
-			
 		}catch(Exception ex){}
 	}
-	
 	public static void main(String[] args) {
-		
-
+		DataCollection dc = new DataCollection();
+		dc.GenieMusicGenreData();
 	}
 
 }

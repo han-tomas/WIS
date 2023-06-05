@@ -7,10 +7,17 @@ SINGER        NOT NULL VARCHAR2(50)
 ALBUM         NOT NULL VARCHAR2(50)
 IDCREMENT     NOT NULL NUMBER
 STATE         NOT NULL VARCHAR2(6)
+POSTER        NOT NULL VARCHAR2(100)
 */
-public class GenieMusicVO {
+public class GenieCategoryVO {
 	private int gno,rank, idcrement;
-	private String title,singer,album,state;
+	private String title,singer,album,state,poster;
+	public String getPoster() {
+		return poster;
+	}
+	public void setPoster(String poster) {
+		this.poster = poster;
+	}
 	public int getGno() {
 		return gno;
 	}
