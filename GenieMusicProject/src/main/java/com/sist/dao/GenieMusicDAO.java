@@ -14,6 +14,7 @@ public class GenieMusicDAO {
 			dao = new GenieMusicDAO();
 		return dao;
 	}
+	// 1. 데이터 수집
 	public void genieMusicCategoryInsert(GenieCategoryVO vo)
 	{
 		try
@@ -43,5 +44,41 @@ public class GenieMusicDAO {
 		{
 			db.disConnection(conn, ps);
 		}
+	}
+	// 2. 카테고리별 목록출력
+	public List<GenieCategoryVO> genieMusiceCategory()
+	{
+		List<GenieCategoryVO> list = new ArrayList<GenieCategoryVO>();
+		try
+		{
+			conn=db.getConnection();
+			String sql="SELECT gno,rank,title,singer,album,idcrement,state,poster "
+					+ "FROM geniemusic_category ORDER BY gno ASC,rank ASC";
+			ps=conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next())
+			{
+				GenieCategoryVO vo = new GenieCategoryVO();
+				vo.setGno(rs.getInt(1));
+				vo.setRank(rs.getInt(2));
+				vo.setTitle(rs.getString(3));
+				vo.setSinger(rs.getString(4));
+				vo.setAlbum(rs.getString(5));
+				vo.setIdcrement(rs.getInt(6));
+				vo.setState(rs.getString(7));
+				vo.setPoster(rs.getString(8));
+				list.add(vo);
+			}
+			rs.close();
+		}catch(Exception ex)
+		{
+			ex.printStackTrace();	
+		}
+		finally
+		{
+			db.disConnection(conn, ps);
+		}
+		return list;
+		
 	}
 }
