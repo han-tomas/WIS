@@ -2,7 +2,8 @@ package com.sist.dao;
 
 public class TravelVO {
 	private int no;
-	private String title,location,duration;
+	private String title,location,duration,poster;
+	
 	
 	public int getNo() {
 		return no;
@@ -28,5 +29,10 @@ public class TravelVO {
 	public void setDuration(String duration) {
 		this.duration = duration;
 	}
-	
+	public String getPoster() {
+		return poster;
+	}
+	public void setPoster(String poster) {
+		this.poster = poster;
+	}
 }

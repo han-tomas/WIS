@@ -23,6 +23,7 @@ public class DataCollection {
 				Document doc = Jsoup.connect(urls[i]).get();
 				Elements title= doc.select("h1.ttlGoodsList");
 				Elements subject = doc.select("td.ListRoundBox_m");
+				Elements poster=doc.select("td.ListRoundBox_m img");
 				for(int j=0;j<title.size();j++)
 				{
 					System.out.println(k);
@@ -49,15 +50,24 @@ public class DataCollection {
 			        	duration="x";
 			        	 System.out.println("관람 소요 시간: " + duration);
 			        }
+			        System.out.println("jejutori.com"+poster.get(j).attr("src"));
 			        System.out.println("==================");
 			        TravelVO vo = new TravelVO();
 			        vo.setNo(k);
 			        vo.setTitle(title.get(j).text());
 			        vo.setLocation(location);
 			        vo.setDuration(duration);
+			        vo.setPoster("jejutori.com"+poster.get(j).attr("src"));
 			        k++;
 				}
 			}
+		}catch(Exception ex) {}
+	}
+	public void travelDetailData()
+	{
+		try
+		{
+			
 		}catch(Exception ex) {}
 	}
 	public static void main(String[] args) {
