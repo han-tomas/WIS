@@ -38,21 +38,23 @@ class Solution {
         return answer;
     }
 }*/
+
 import java.util.*;
+
 public class 무작위로k개수뽑기 {
     public int[] solution(int[] arr, int k) {
+        ArrayList<Integer> arrayList = new ArrayList<>();
+
+        for (int a : arr)
+            if (!arrayList.contains(a))
+                arrayList.add(a);
+
+        int idx = 0;
         int[] answer = new int[k];
-        List<Integer> list = new ArrayList<>();
-        int[] kArr = Arrays.stream(arr).distinct().toArray();
-        int len = kArr.length;
-        for(int i =0; i<answer.length; i++) {
-            if(len != 0) {
-                len --;
-                answer[i] = kArr[i];
-            }else {
-                answer[i] = -1;
-            }
-        }
+        for (int i = 0;i < k;i++)
+            answer[i] = -1;
+        for (int i = 0;i < k && i < arrayList.size();i++)
+            answer[i] = arrayList.get(i);
         return answer;
     }
 }
